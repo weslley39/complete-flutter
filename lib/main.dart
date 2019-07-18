@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.teal,
         body: SafeArea(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CircleAvatar(
               radius: 50.0,
@@ -24,8 +25,52 @@ class MyApp extends StatelessWidget {
               'Weslley Neri',
               style: TextStyle(
                   fontSize: 40,
+                  fontFamily: 'Pacifico',
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
+            ),
+            Text(
+              'FLUTTER DEVELOPER',
+              style: TextStyle(
+                  fontFamily: 'SourceSansPro',
+                  color: Colors.teal.shade100,
+                  fontSize: 20.0,
+                  letterSpacing: 2.5,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+              width: 150,
+              child: Divider(color: Colors.teal.shade100),
+            ),
+            Card(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              child: ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    '+55 11 98025-4848',
+                    style: TextStyle(
+                        color: Colors.teal.shade900,
+                        fontFamily: 'SourceSansPro',
+                        fontSize: 20.0),
+                  )),
+            ),
+            Card(
+              color: Colors.white,
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              child: ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Colors.teal,
+                  ),
+                  title: Text('weslley39@gmail.com',
+                      style: TextStyle(
+                          fontFamily: 'SourceSansPro',
+                          fontSize: 20,
+                          color: Colors.teal.shade900))),
             )
           ],
         )),
