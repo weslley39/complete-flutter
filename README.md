@@ -1,16 +1,9 @@
-# personal_card
+# My personal card
 
-A new Flutter application.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/5286092/61473693-4bc89500-a95d-11e9-960a-3beb3f2c4fa4.png">
+</p>
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This is a simple app created while doing this [amazing complete flutter course](https://www.appbrewery.co/);
