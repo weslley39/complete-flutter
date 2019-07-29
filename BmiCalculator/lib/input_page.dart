@@ -1,7 +1,10 @@
+import 'package:bmi_calculator/gender_selection.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+const inactiveCardColor = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,22 +20,7 @@ class _InputPageState extends State<InputPage> {
         ),
         body: Column(
           children: <Widget>[
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  CustomCard(
-                      child: IconContent(
-                    icon: FontAwesomeIcons.mars,
-                    text: 'MALE',
-                  )),
-                  CustomCard(
-                      child: IconContent(
-                    icon: FontAwesomeIcons.mars,
-                    text: 'FEMALE',
-                  )),
-                ],
-              ),
-            ),
+            GenderSelection(),
             CustomCard(),
             Expanded(
               child: Row(
