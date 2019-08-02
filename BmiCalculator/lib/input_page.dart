@@ -1,8 +1,8 @@
+import 'package:bmi_calculator/card_input.dart';
 import 'package:bmi_calculator/gender_selection.dart';
-import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/card.dart';
+import 'package:bmi_calculator/height_selection.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const inactiveCardColor = Color(0xFF111328);
 
@@ -19,14 +19,15 @@ class _InputPageState extends State<InputPage> {
           title: Text('BMI CALCULATOR'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             GenderSelection(),
-            CustomCard(),
+            HeightSelection(),
             Expanded(
               child: Row(
                 children: <Widget>[
-                  CustomCard(),
-                  CustomCard(),
+                  CardInput(),
+                  CardInput(),
                 ],
               ),
             ),

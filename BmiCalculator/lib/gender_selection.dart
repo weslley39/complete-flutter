@@ -1,10 +1,8 @@
+import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const inactiveCardColor = Color(0xFF111328);
-const activeCardColor = Color(0xFF1D1E33);
 
 enum GenderType {
   MALE,
@@ -17,26 +15,12 @@ class GenderSelection extends StatefulWidget {
 }
 
 class _GenderSelectionState extends State<GenderSelection> {
-  Color maleColor = inactiveCardColor;
-  Color femaleColor = inactiveCardColor;
+  GenderType selectedGender;
 
-  void update(GenderType selectedGender) {
-    if (selectedGender == GenderType.MALE) {
-      if (maleColor == inactiveCardColor) {
-        maleColor = activeCardColor;
-        femaleColor = inactiveCardColor;
-      } else {
-        maleColor = inactiveCardColor;
-      }
-    }
-    if (selectedGender == GenderType.FEMALE) {
-      if (femaleColor == inactiveCardColor) {
-        femaleColor = activeCardColor;
-        maleColor = inactiveCardColor;
-      } else {
-        femaleColor = inactiveCardColor;
-      }
-    }
+  void setGender(GenderType gender) {
+    setState(() {
+      selectedGender = gender;
+    });
   }
 
   @override
@@ -47,10 +31,12 @@ class _GenderSelectionState extends State<GenderSelection> {
           CustomCard(
               onPress: () {
                 setState(() {
-                  update(GenderType.MALE);
+                  setGender(GenderType.MALE);
                 });
               },
-              color: maleColor,
+              color: selectedGender == GenderType.MALE
+                  ? kActiveCardColor
+                  : kInactiveCardColor,
               child: IconContent(
                 icon: FontAwesomeIcons.mars,
                 text: 'MALE',
@@ -58,10 +44,12 @@ class _GenderSelectionState extends State<GenderSelection> {
           CustomCard(
               onPress: () {
                 setState(() {
-                  update(GenderType.FEMALE);
+                  setGender(GenderType.FEMALE);
                 });
               },
-              color: femaleColor,
+              color: selectedGender == GenderType.FEMALE
+                  ? kActiveCardColor
+                  : kInactiveCardColor,
               child: IconContent(
                 icon: FontAwesomeIcons.mars,
                 text: 'FEMALE',
