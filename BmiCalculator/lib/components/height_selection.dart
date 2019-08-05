@@ -1,8 +1,12 @@
-import 'package:bmi_calculator/card.dart';
+import 'package:bmi_calculator/components/card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 
 class HeightSelection extends StatefulWidget {
+  HeightSelection({this.onChange});
+
+  final Function onChange;
+
   @override
   _HeightSelectionState createState() => _HeightSelectionState();
 }
@@ -46,6 +50,7 @@ class _HeightSelectionState extends State<HeightSelection> {
                 setState(() {
                   value = newValue.round();
                 });
+                widget.onChange(value);
               },
             ),
           )

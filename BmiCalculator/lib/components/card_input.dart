@@ -1,16 +1,22 @@
-import 'package:bmi_calculator/card.dart';
+import 'package:bmi_calculator/components/card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardInput extends StatefulWidget {
+  CardInput({@required this.name, this.onChange});
+
+  final String name;
+  final Function onChange;
+
   @override
   _CardInputState createState() => _CardInputState();
 }
 
 class _CardInputState extends State<CardInput> {
-  int value = 80;
+  int value = 20;
+
   @override
   Widget build(BuildContext context) {
     return CustomCard(
@@ -18,7 +24,7 @@ class _CardInputState extends State<CardInput> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('WEIGHT', style: kLabelTextStyle),
+          Text(widget.name, style: kLabelTextStyle),
           Text(value.toString(), style: kNumberTextStyle),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -27,8 +33,9 @@ class _CardInputState extends State<CardInput> {
                 icon: FontAwesomeIcons.minus,
                 onPress: () {
                   setState(() {
-                    value -= 1;
+                    if (value > 0) value -= 1;
                   });
+                  widget.onChange(value);
                 },
               ),
               SizedBox(width: 10.0),
@@ -38,6 +45,7 @@ class _CardInputState extends State<CardInput> {
                   setState(() {
                     value += 1;
                   });
+                  widget.onChange(value);
                 },
               ),
             ],
