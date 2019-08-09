@@ -1,11 +1,14 @@
 import 'package:clima/models/weather_info.dart';
+import 'package:clima/screens/city_screen.dart';
+import 'package:clima/services/location.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
+import 'package:geolocator/geolocator.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({@required this.weather});
 
-  final WeatherInfo weather;
+  WeatherInfo weather;
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
@@ -15,6 +18,24 @@ class _LocationScreenState extends State<LocationScreen> {
   void initState() {
     super.initState();
     print(widget.weather.temperature);
+  }
+
+  void updateLocation() async {
+    WeatherInfo weather = await LocationService.getByGPS();
+    setState(() {
+      widget.weather = weather;
+    });
+  }
+
+  void goToCityScreen() async {
+    String cityName = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CityScreen()));
+    if (cityName != null) {
+      WeatherInfo cityWeather = await LocationService.getByName(cityName);
+      setState(() {
+        widget.weather = cityWeather;
+      });
+    }
   }
 
   @override
@@ -39,14 +60,14 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () => updateLocation(),
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () => goToCityScreen(),
                     child: Icon(
                       Icons.location_city,
                       size: 50.0,
@@ -59,7 +80,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      '${widget.weather.temperature.toStringAsFixed(0)}°',
+                      '${widget.weather.temperature != null ? widget.weather.temperature.toStringAsFixed(0) : ''}°',
                       style: kTempTextStyle,
                     ),
                     Text(

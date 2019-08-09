@@ -10,7 +10,9 @@ class WeatherInfo {
   });
 
   String getWeatherIcon() {
-    if (this.condition < 300) {
+    if (condition == null) {
+      return '🔺';
+    } else if (this.condition < 300) {
       return '🌩';
     } else if (this.condition < 400) {
       return '🌧';
@@ -30,7 +32,9 @@ class WeatherInfo {
   }
 
   String getMessage() {
-    if (this.temperature > 25) {
+    if (this.temperature == null) {
+      return 'Error';
+    } else if (this.temperature > 25) {
       return 'It\'s 🍦 time';
     } else if (this.temperature > 20) {
       return 'Time for shorts and 👕';

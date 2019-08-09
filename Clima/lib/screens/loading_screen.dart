@@ -17,19 +17,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationAndGo() async {
-    Position position =
-        await Geolocator().getCurrentPosition(LocationAccuracy.low);
-    WeatherInfo weather = await LocationService.getSomething(
-        position.latitude, position.longitude);
+    WeatherInfo weather = await LocationService.getByGPS();
     goToLocationScreen(weather);
   }
 
   void goToLocationScreen(WeatherInfo weather) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LocationScreen(
-        weather: weather,
-      );
-    }));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => LocationScreen(weather: weather)));
   }
 
   @override
