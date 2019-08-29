@@ -13,8 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String email;
-  String password;
+  String email = 'weslley39@gmail.com';
+  String password = '123456';
   bool isLoading = false;
   final _authService = FirebaseAuth.instance;
 
