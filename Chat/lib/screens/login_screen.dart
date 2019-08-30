@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String email = 'weslley39@gmail.com';
+  static final email = TextEditingController(text: 'weslley39@gmail.com');
   String password = '123456';
   bool isLoading = false;
   final _authService = FirebaseAuth.instance;
@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = true;
       });
       var user = await _authService.signInWithEmailAndPassword(
-          email: this.email, password: this.password);
+          email: email.text, password: this.password);
       if (user != null) {
         Navigator.pushNamed(context, ChatScreen.id);
       }
@@ -49,21 +49,24 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 48.0,
               ),
               InputRounded(
+                controller: email,
                 type: TextInputType.emailAddress,
                 hint: 'Enter your email.',
                 onChange: (value) {
-                  this.email = value;
+                  email.text = value;
                 },
               ),
               SizedBox(

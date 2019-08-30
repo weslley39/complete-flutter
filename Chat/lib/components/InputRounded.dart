@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 
 class InputRounded extends StatelessWidget {
-  const InputRounded(
-      {this.hint,
-      this.onChange,
-      this.isObscure = false,
-      this.type = TextInputType.text});
+  const InputRounded({
+    this.hint,
+    this.onChange,
+    this.controller,
+    this.isObscure = false,
+    this.type = TextInputType.text,
+  });
 
   final String hint;
   final Function onChange;
   final bool isObscure;
   final TextInputType type;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: this.controller,
       onChanged: this.onChange,
       textAlign: TextAlign.center,
       obscureText: this.isObscure,
