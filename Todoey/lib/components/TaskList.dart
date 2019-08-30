@@ -3,11 +3,9 @@ import 'package:todoey/components/TaskTile.dart';
 import 'package:todoey/models/Task.dart';
 
 class TasksList extends StatelessWidget {
-  List<Task> tasks = [
-    Task(name: 'Buy Milk'),
-    Task(name: 'Buy Coconut'),
-    Task(name: 'Todo 1'),
-  ];
+  TasksList(this.tasks);
+
+  final List<Task> tasks;
 
   @override
   Widget build(BuildContext context) {

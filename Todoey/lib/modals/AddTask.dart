@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/models/Task.dart';
 
 class AddTaskModal {
-  static Widget _getBuilder(BuildContext context) {
+  static Widget _getBuilder(BuildContext context, Function onNewTask) {
+    String name;
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -25,6 +28,9 @@ class AddTaskModal {
               TextField(
                 autofocus: true,
                 textAlign: TextAlign.center,
+                onChanged: (value) {
+                  name = value;
+                },
               ),
               SizedBox(
                 height: 15.0,
@@ -35,7 +41,11 @@ class AddTaskModal {
                   style: TextStyle(color: Colors.white),
                 ),
                 color: Colors.lightBlueAccent,
-                onPressed: () {},
+                onPressed: () {
+                  var newTask = Task(name: name);
+                  onNewTask(newTask);
+                  Navigator.pop(context);
+                },
               )
             ],
           ),
@@ -44,7 +54,9 @@ class AddTaskModal {
     );
   }
 
-  static void show(BuildContext context) {
-    showModalBottomSheet(context: context, builder: _getBuilder);
+  static void show({BuildContext context, Function onNewTask}) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => _getBuilder(context, onNewTask));
   }
 }
