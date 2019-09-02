@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/components/TaskTile.dart';
-import 'package:todoey/models/Task.dart';
 import 'package:todoey/providers/Task.dart';
 
 class TasksList extends StatelessWidget {
@@ -18,6 +17,9 @@ class TasksList extends StatelessWidget {
               isChecked: task.isDone,
               onChecked: (value) {
                 tasks[index].toggle();
+              },
+              onLongPress: () {
+                taskProvider.delete(task);
               },
             );
           },

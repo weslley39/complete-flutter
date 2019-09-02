@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey/models/Task.dart';
+import 'package:todoey/providers/Task.dart';
 
 class AddTaskModal {
-  static Widget _getBuilder(BuildContext context, Function onNewTask) {
+  static Widget _getBuilder(BuildContext context) {
     String name;
 
     return Container(
@@ -43,7 +45,7 @@ class AddTaskModal {
                 color: Colors.lightBlueAccent,
                 onPressed: () {
                   var newTask = Task(name: name);
-                  onNewTask(newTask);
+                  Provider.of<TaskProvider>(context).add(newTask);
                   Navigator.pop(context);
                 },
               )
@@ -54,9 +56,7 @@ class AddTaskModal {
     );
   }
 
-  static void show({BuildContext context, Function onNewTask}) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) => _getBuilder(context, onNewTask));
+  static void show({BuildContext context}) {
+    showModalBottomSheet(context: context, builder: _getBuilder);
   }
 }

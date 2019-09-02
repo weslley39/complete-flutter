@@ -15,12 +15,8 @@ class TasksScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () => {
           AddTaskModal.show(
-              context: context,
-              onNewTask: (newTask) {
-                // setState(() {
-                // tasks.add(newTask);
-                // });
-              })
+            context: context,
+          )
         },
       ),
       body: Column(
